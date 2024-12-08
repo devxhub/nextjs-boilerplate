@@ -1,0 +1,16 @@
+{
+  "home": {
+    "title": "Modèle Next.js",
+    "button": "Cliquez ici"
+  },
+  "not_found": {
+    "title": "Page introuvable",
+    "subtitle": "Désolé, nous n'avons pas pu trouver la page que vous recherchez.",
+    "link": "Retourner à l'accueil",
+    "support": "Si vous pensez qu'il s'agit d'une erreur, veuillez contacter le support."
+  },
+  "error": {
+    "title": "Quelque chose s'est mal passé",
+    "link": "Essayez encore"
+  }
+}
