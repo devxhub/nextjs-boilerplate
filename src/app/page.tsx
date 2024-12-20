@@ -1,4 +1,5 @@
 import { getDictionary, getUsers } from "@/actions";
+import LocaleSwitcherWrapper from "@/components/LocaleSwitcherWrapper";
 
 export default async function Home() {
   const dict = await getDictionary();
@@ -6,6 +7,7 @@ export default async function Home() {
 
   return (
     <div className="h-screen grid place-content-center gap-y-5">
+      <LocaleSwitcherWrapper />
       <p className="text-3xl font-medium">{dict.home.title}</p>
 
       <div className="space-y-2">
