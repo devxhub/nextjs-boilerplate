@@ -3,7 +3,8 @@
     "next/core-web-vitals",
     "next/typescript",
     "plugin:@tanstack/query/recommended",
-    "prettier"
+    "prettier",
+    "plugin:storybook/recommended"
   ],
   "plugins": ["@tanstack/query"],
   "rules": {
