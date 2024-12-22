@@ -1,16 +1,16 @@
 import type { Meta, StoryObj } from "@storybook/react";
 import { fn } from "@storybook/test";
 
-import { Button1 } from "./button";
+import { Button } from "../ui/button";
 
 const meta = {
-  title: "COMPONENTS/Button",
-  component: Button1,
+  title: "COMPONENTS/ButtonStory",
+  component: Button,
   parameters: {
     layout: "centered",
   },
   args: { variant: "default", children: "next boilerplate" },
-} satisfies Meta<typeof Button1>;
+} satisfies Meta<typeof Button>;
 
 export default meta;
 type Story = StoryObj<typeof meta>;
