@@ -1,6 +1,6 @@
 "use client";
 
-import { Button } from "@/components/ui/button";
+import { Button } from "@/components/ui/button/button";
 import { queryFn } from "@/lib";
 import { useCounterStore } from "@/store";
 import { useQuery } from "@tanstack/react-query";
