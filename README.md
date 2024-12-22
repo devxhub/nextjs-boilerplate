@@ -5,8 +5,7 @@
 - Next.js latest version (v15)
 - Progressive styling (tailwind CSS, shadcn-ui)
 - Internationalization
-- Data fetching on client components (axios)
-- Data fetching on server components (default fetch)
+- Data fetching (default fetch api)
 - Form validation library (zod, react-hook-form)
 - Server state management (tanstack query)
 - Client state management (zustand, immer)

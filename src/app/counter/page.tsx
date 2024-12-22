@@ -1,6 +1,7 @@
 "use client";
 
 import { Button } from "@/components/ui/button";
+import { usersQuery } from "@/graphql";
 import { queryFn } from "@/lib";
 import { useCounterStore } from "@/store";
 import { useQuery } from "@tanstack/react-query";
@@ -11,6 +12,7 @@ export default function Counter() {
   const { data, error, isLoading } = useQuery({
     queryKey: ["users"],
     queryFn,
+    meta: { usersQuery },
   });
 
   let content = <></>;
@@ -23,14 +25,14 @@ export default function Counter() {
     content = <div className="text-red-500">Something went wrong</div>;
   }
 
-  if (!isLoading && !error && data?.length === 0) {
+  if (!isLoading && !error && data?.users?.totalCount === 0) {
     content = <div className="text-gray-500">Data not found</div>;
   }
 
-  if (!isLoading && !error && data?.length > 0) {
-    content = data.map((user: { id: number; name: string }) => (
-      <div key={user.id} className="text-gray-800 text-left">
-        {user.id} {user.name}
+  if (!isLoading && !error && data?.users?.totalCount > 0) {
+    content = data.users.edges.map((user: { node: { id: number; name: string } }) => (
+      <div key={user.node.id} className="text-gray-800 text-left">
+        {user.node.id} {user.node.name}
       </div>
     ));
   }
@@ -57,7 +59,8 @@ export default function Counter() {
       </div>
 
       <div className="space-y-2">
-        <p className="text-xl font-medium">Users</p>
+        <p className="text-xl font-medium">Total Users ({data?.users?.totalCount})</p>
+        <hr className="pb-2" />
         {content}
       </div>
     </div>
