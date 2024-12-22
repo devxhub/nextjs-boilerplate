@@ -1,4 +1,4 @@
-const login = /* GraphQL */ `
+const loginMutation = /* GraphQL */ `
   mutation Login($email: String, $password: String) {
     loginHr(input: { email: $email, password: $password }) {
       success
@@ -20,20 +20,15 @@ const login = /* GraphQL */ `
   }
 `;
 
-const register = /* GraphQL */ `
-  mutation CreateHr($name: String, $email: String, $password: String, $lang: ID) {
-    createHr(input: { name: $name, email: $email, password: $password, lang: $lang }) {
-      success
-      user {
-        id
-        email
-        isActive
-      }
+const refreshTokenMutation = /* GraphQL */ `
+  mutation RefreshToken($refreshToken: String) {
+    refreshToken(refreshToken: $refreshToken) {
       token
       refreshToken
-      response
+      refreshExpiresIn
+      payload
     }
   }
 `;
 
-export { login, register };
+export { loginMutation, refreshTokenMutation };

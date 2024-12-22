@@ -5,5 +5,8 @@
     "plugin:@tanstack/query/recommended",
     "prettier"
   ],
-  "plugins": ["@tanstack/query"]
+  "plugins": ["@tanstack/query"],
+  "rules": {
+    "@typescript-eslint/no-explicit-any": "off"
+  }
 }

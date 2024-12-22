@@ -1,6 +1,7 @@
 import { ReactQueryClientProvider } from "@/providers";
 import type { Metadata } from "next";
 import { Poppins } from "next/font/google";
+import { ToastContainer } from "react-toastify";
 import "./globals.css";
 
 const poppins = Poppins({
@@ -23,7 +24,10 @@ export default async function RootLayout({
   return (
     <html lang="en" suppressHydrationWarning>
       <body suppressHydrationWarning className={`${poppins.variable} antialiased`}>
-        <ReactQueryClientProvider>{children}</ReactQueryClientProvider>
+        <ReactQueryClientProvider>
+          {children}
+          <ToastContainer />
+        </ReactQueryClientProvider>
       </body>
     </html>
   );

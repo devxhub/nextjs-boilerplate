@@ -1,3 +1,10 @@
 type Locale = "en" | "fr";
 
-export type { Locale };
+type GraphQLError = {
+  message: string;
+  locations?: { line: number; column: number }[];
+  path?: string[];
+  extensions?: Record<string, unknown>;
+};
+
+export type { GraphQLError, Locale };
