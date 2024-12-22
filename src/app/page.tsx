@@ -1,24 +1,66 @@
-import { getDictionary, getUsers } from "@/actions";
+import { getDictionary, graphqlAction } from "@/actions";
 import LocaleSwitcherWrapper from "@/components/LocaleSwitcherWrapper";
+import {
+  Table,
+  TableBody,
+  TableCell,
+  TableHead,
+  TableHeader,
+  TableRow,
+} from "@/components/ui/table";
+import { usersQuery } from "@/graphql";
+import { cookies } from "next/headers";
+import { redirect } from "next/navigation";
+
+type User = {
+  node: {
+    id: string;
+    name: string;
+    email: string;
+    username: string | null;
+  };
+};
 
 export default async function Home() {
   const dict = await getDictionary();
-  const users = await getUsers();
+
+  const cookieStore = await cookies();
+  const authToken = cookieStore.get("dxh_access_token")?.value;
+
+  if (!authToken) redirect("/auth/login");
+
+  const response = await graphqlAction<Promise<{ users: { edges: User[] } }>>({
+    query: usersQuery,
+  });
+
+  const users = response.users.edges || [];
 
   return (
     <div className="h-screen grid place-content-center gap-y-5">
       <LocaleSwitcherWrapper />
       <p className="text-3xl font-medium">{dict.home.title}</p>
 
-      <div className="space-y-2">
-        <p className="font-medium">Render from server</p>
-        <ul className="space-y-1">
-          {users.map((user: { id: number; name: string }) => (
-            <li key={user.id}>
-              {user.id} {user.name}
-            </li>
-          ))}
-        </ul>
+      <div>
+        <Table>
+          <TableHeader>
+            <TableRow>
+              <TableHead className="w-[100px]">User ID</TableHead>
+              <TableHead>Name</TableHead>
+              <TableHead>Email</TableHead>
+              <TableHead>Phone</TableHead>
+            </TableRow>
+          </TableHeader>
+          <TableBody>
+            {users.map((user: User) => (
+              <TableRow key={user.node.id}>
+                <TableCell className="font-medium">{user.node.id}</TableCell>
+                <TableCell>{user.node.name}</TableCell>
+                <TableCell>{user.node.email}</TableCell>
+                <TableCell>{user.node.username}</TableCell>
+              </TableRow>
+            ))}
+          </TableBody>
+        </Table>
       </div>
     </div>
   );
