@@ -1,10 +1,10 @@
 import type { Meta, StoryObj } from "@storybook/react";
 import { fn } from "@storybook/test";
 
-import { Button } from "../ui/button";
+import { Button } from "./button";
 
 const meta = {
-  title: "COMPONENTS/ButtonStory",
+  title: "COMPONENTS/UI",
   component: Button,
   parameters: {
     layout: "centered",
