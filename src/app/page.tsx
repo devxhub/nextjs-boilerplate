@@ -1,16 +1,8 @@
 import { getDictionary, graphqlAction } from "@/actions";
 import LocaleSwitcherWrapper from "@/components/LocaleSwitcherWrapper";
-import {
-  Table,
-  TableBody,
-  TableCell,
-  TableHead,
-  TableHeader,
-  TableRow,
-} from "@/components/ui/table";
+import { Table, TableBody, TableHead, TableHeader, TableRow } from "@/components/ui/table";
 import { usersQuery } from "@/graphql";
 import { cookies } from "next/headers";
-import { redirect } from "next/navigation";
 
 type User = {
   node: {
@@ -27,13 +19,13 @@ export default async function Home() {
   const cookieStore = await cookies();
   const authToken = cookieStore.get("dxh_access_token")?.value;
 
-  if (!authToken) redirect("/auth/login");
+  // if (!authToken) redirect("/auth/login");
 
   const response = await graphqlAction<Promise<{ users: { edges: User[] } }>>({
     query: usersQuery,
   });
 
-  const users = response.users.edges || [];
+  // const users = response.users.edges || [];
 
   return (
     <div className="h-screen grid place-content-center gap-y-5">
@@ -51,14 +43,14 @@ export default async function Home() {
             </TableRow>
           </TableHeader>
           <TableBody>
-            {users.map((user: User) => (
+            {/* {users.map((user: User) => (
               <TableRow key={user.node.id}>
                 <TableCell className="font-medium">{user.node.id}</TableCell>
                 <TableCell>{user.node.name}</TableCell>
                 <TableCell>{user.node.email}</TableCell>
                 <TableCell>{user.node.username}</TableCell>
               </TableRow>
-            ))}
+            ))} */}
           </TableBody>
         </Table>
       </div>
