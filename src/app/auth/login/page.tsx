@@ -2,13 +2,12 @@ import { LoginForm } from "@/components/auth";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 import { cookies } from "next/headers";
 import Link from "next/link";
-import { redirect } from "next/navigation";
 
 export default async function Component() {
   const cookieStore = await cookies();
   const authToken = cookieStore.get("dxh_access_token")?.value;
 
-  if (authToken) redirect("/");
+  // if (authToken) redirect("/");
 
   return (
     <div className="bg-slate-50 grid place-content-center h-screen">

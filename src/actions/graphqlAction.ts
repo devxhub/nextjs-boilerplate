@@ -25,7 +25,8 @@ async function graphqlAction<T = unknown>({
     ...additionalHeaders,
   };
 
-  const response = await fetch(`${process.env.NEXT_PUBLIC_API_BASE_URL}/graphql/`, {
+  // const response = await fetch(`${process.env.NEXT_PUBLIC_API_BASE_URL}/graphql/`, {
+  const response = await fetch(`${process.env.NEXT_PUBLIC_API_BASE_URL}`, {
     method: "POST",
     headers,
     body: JSON.stringify({
